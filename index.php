@@ -98,7 +98,7 @@
 
     <footer>
         <div class="container-footer">
-            <a href="./"><img src="imagenes/icono.png" class="logo-footer" alt="Course Administrator"></a>
+            <a href="./" class="logo-footer-container"><img src="imagenes/icono.png" class="logo-footer" alt="Course Administrator"></a>
             <div class="columna-footer">
                 <h5 class="titulo-footer">Administración de Cursos</h5>
                 <p class="parrafo-footer">Sitio web de control y administración de las actividades de los cursos</p>
@@ -106,7 +106,7 @@
             <div class="columna-footer">
                 <h5 class="titulo-footer">Desarrolladores</h5>
                 <ul>
-                    <li><a class="nombre-desarrollador" href="#!">7690-20-14576 Jeison Roblero</a></li><br>
+                    <li><a class="nombre-desarrollador" href="#!">7690-20-14576 Jeison Roblero</a></li>
                     <li><a class="nombre-desarrollador" href="#!">7690-20-26003 Pablo Garcia</a></li>
                 </ul>
             </div>

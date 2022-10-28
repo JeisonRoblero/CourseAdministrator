@@ -8,6 +8,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    word-wrap: break-word;
 }
 
 /* ---------------------------- */
@@ -60,7 +61,7 @@ main {
         auto-fit,
         minmax(
                 15.5rem,
-                14.5rem
+                15.5rem
         )
     );
     gap: 20px;
@@ -141,6 +142,7 @@ footer {
 .container-footer {
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .logo-footer {
@@ -149,6 +151,11 @@ footer {
 
 .columna-footer ul li {
     list-style: none;
+}
+
+.titulo-footer {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
 }
 
 .footer-copyright {
@@ -171,12 +178,41 @@ footer {
 }
 
 
-/* ------------------------------------- */
-/* -----Para dispositivos celulares----- */
-/* ------------------------------------- */
+/* ------------------------------------------- */
+/* -----Para dispositivos moviles grandes----- */
+/* ------------------------------------------- */
 @media screen and (max-width: 768px) {
+
+    .panel-cursos {
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(
+                    15.5rem,
+                    1fr
+            )
+        );
+    }
+
     .container-footer {
-        display: block;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo-footer-container {
+        width: calc(100% - 40px);
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        background-color: rgb(208, 248, 255);
+        border-radius: 1rem;
+    }
+
+    .titulo-footer {
+        margin-top: 0.5rem;
+    }
+
+    .footer-copyright {
+        flex-direction: column;
     }
 }
 
