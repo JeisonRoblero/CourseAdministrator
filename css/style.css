@@ -170,6 +170,10 @@ footer {
     color: rgb(0, 136, 210);
 }
 
+
+/* ------------------------------------- */
+/* -----Para dispositivos celulares----- */
+/* ------------------------------------- */
 @media screen and (max-width: 768px) {
     .container-footer {
         display: block;

@@ -98,7 +98,7 @@
 
     <footer>
         <div class="container-footer">
-        <a href="./"><img src="imagenes/icono.png" class="logo-footer" alt="Course Administrator"></a>
+            <a href="./"><img src="imagenes/icono.png" class="logo-footer" alt="Course Administrator"></a>
             <div class="columna-footer">
                 <h5 class="titulo-footer">Administración de Cursos</h5>
                 <p class="parrafo-footer">Sitio web de control y administración de las actividades de los cursos</p>
