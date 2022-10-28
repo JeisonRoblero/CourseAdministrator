@@ -1,0 +1,180 @@
+/* ---------------------------- */
+/* -----Estilos Iniciales------ */
+/* ---------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ---------------------------- */
+/* ----Encabezado o Header----- */
+/* ---------------------------- */ 
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #0700b8 0%, #00ff88 100%);
+    padding: 10px;
+}
+
+.left-header {
+    display: flex;
+    text-decoration: none;
+    color: #ffff;
+}
+
+.logo-header {
+    width: 40px;
+    height: 40px;
+}
+
+.titulo-header {
+   margin-left: 10px;
+   font-size: 1.5rem;
+   margin-top: 3px;
+}
+
+.perfil img {
+    width: 40px;
+    height: 40px;
+}
+
+main {
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* ---------------------------- */
+/* -----Tarjetas de Cursos----- */
+/* ---------------------------- */
+
+.panel-cursos {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(
+                15.5rem,
+                14.5rem
+        )
+    );
+    gap: 20px;
+}
+
+.tarjeta-curso {
+    background-color: #ffff;
+    border-radius: 15px;
+    overflow: hidden;
+    -webkit-box-shadow: 1px 6px 27px -6px rgba(0,0,0,0.67);
+    -moz-box-shadow: 1px 6px 27px -6px rgba(0,0,0,0.67);
+    box-shadow: 1px 6px 27px -6px rgba(0,0,0,0.67);
+}
+
+.tarjeta-curso:hover {
+    -webkit-box-shadow: 1px 6px 42px -6px rgba(0,0,0,0.67);
+    -moz-box-shadow: 1px 6px 42px -6px rgba(0,0,0,0.67);
+    box-shadow: 1px 6px 42px -6px rgba(0,0,0,0.67);
+}
+
+.curso-img {
+    width: 100%;
+    height: 60%;
+    overflow: hidden;
+}
+
+.curso-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.curso-img img:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.cuerpo-tarjeta {
+    padding: 8px 20px 20px 20px;
+}
+
+.cuerpo-tarjeta a {
+    text-decoration: none;
+}
+
+.nombre-curso {
+    color: #00bb89;
+}
+
+.codigo-curso {
+    color: rgb(0, 56, 77);
+}
+
+.anio-curso {
+    color: rgb(0, 88, 139);
+}
+
+.nombre-curso, 
+.codigo-curso, 
+.anio-curso {
+    width: calc(15.5rem - 40px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* -------------------------------- */
+/* -----Pie de Página o Footer----- */
+/* -------------------------------- */
+
+footer {
+    background: #181818;
+    color: #ffff;
+    padding: 20px;
+}
+
+.container-footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.logo-footer {
+    width: 100px;
+}
+
+.columna-footer ul li {
+    list-style: none;
+}
+
+.footer-copyright {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    background-color: #282828;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.nombre-desarrollador {
+    text-decoration: none;
+    color: rgb(27, 179, 173);
+}
+
+.link-mas-info {
+    text-decoration: none;
+    color: rgb(0, 136, 210);
+}
+
+@media screen and (max-width: 768px) {
+    .container-footer {
+        display: block;
+    }
+}
+
+
+
