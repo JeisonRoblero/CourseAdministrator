@@ -210,6 +210,44 @@ main {
     border-radius: 1.5rem;
 }
 
+/* ------------------------------------ */
+/* ------Página de Detalle Curso------- */
+/* ------------------------------------ */
+.tabla-actividades-curso {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid rgb(0, 113, 128);
+}
+
+.tabla-actividades-curso tbody td {
+    text-align: center;
+}
+
+.tabla-actividades-curso tfoot th {
+    text-align: center;
+}
+
+.tabla-actividades-curso thead th {
+    background: #0093E9;
+    color: #ffff;
+}
+
+.tabla-actividades-curso tbody tr:nth-of-type(even) {
+    background:rgb(208, 248, 255);
+}
+
+.tabla-actividades-curso tbody tr:nth-of-type(odd) {
+    background:rgb(0, 217, 255);
+}
+
+.tabla-actividades-curso thead th, 
+.tabla-actividades-curso tbody td,
+.tabla-actividades-curso tfoot th,
+.tabla-actividades-curso tfoot td {
+    border: 3px solid rgb(0, 113, 128);
+}
+
 /* -------------------------------- */
 /* -----Pie de Página o Footer----- */
 /* -------------------------------- */

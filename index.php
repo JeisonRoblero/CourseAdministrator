@@ -1,6 +1,7 @@
 <?php
 include "configs/config.php";
 include "configs/funciones.php";
+concectarBD();
 if(!isset($p)) {
     $p = "cursos";
 } else {
@@ -69,5 +70,8 @@ if(!isset($p)) {
         </div>
     </footer>
 
+    <!-- Librería para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

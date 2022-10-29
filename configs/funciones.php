@@ -12,7 +12,7 @@ include "config.php";
         if(!mysqli_select_db($link, $db_mysql)) {
             echo "Error seleccionando la base de datos.<br>";
             exit();
-        }
+        } 
 
         return $link;
     }
