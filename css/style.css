@@ -129,6 +129,87 @@ main {
     white-space: nowrap;
 }
 
+/* ---------------------------- */
+/* ------Página de Lógin------- */
+/* ---------------------------- */
+.login-page {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height:90vh;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 1px 6px 27px -6px rgba(0,0,0,0.67);
+    -moz-box-shadow: 1px 6px 27px -6px rgba(0,0,0,0.67);
+    box-shadow: 1px 6px 27px -6px rgba(0,0,0,0.67);
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    padding: 35px;
+    margin-right: 50px;
+    width: 100%;
+    max-width: 250px;
+    border-radius: 1.5rem;
+}
+
+.login-container:hover {
+    -webkit-box-shadow: 1px 6px 42px -6px rgba(0,0,0,0.67);
+    -moz-box-shadow: 1px 6px 42px -6px rgba(0,0,0,0.67);
+    box-shadow: 1px 6px 42px -6px rgba(0,0,0,0.67);
+}
+
+.titulo-login {
+    margin-bottom: 1rem;
+}
+
+.login-form label {
+    margin-top: 50px;
+}
+
+.login-form input {
+    width: 15rem;
+    padding: 10px;
+    color: rgb(0, 139, 214);
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.login-form input:focus {
+    border: #0077ff solid;
+}
+
+.center-button-login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.center-button-login button {
+    width: 10rem;
+    padding: 10px;
+    border: none;
+    background-color: #009cbb;
+    color: #ffff;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+}
+
+.center-button-login button:hover {
+    background-color: #006377;
+    cursor: pointer;
+}
+
+.img-login-container img {
+    width: 500px;
+    border-radius: 1.5rem;
+}
+
 /* -------------------------------- */
 /* -----Pie de Página o Footer----- */
 /* -------------------------------- */
@@ -177,7 +258,6 @@ footer {
     color: rgb(0, 136, 210);
 }
 
-
 /* ------------------------------------------- */
 /* -----Para dispositivos moviles grandes----- */
 /* ------------------------------------------- */
@@ -191,6 +271,18 @@ footer {
                     1fr
             )
         );
+    }
+
+    .login-page {
+        flex-direction: column;
+    }
+
+    .login-container {
+        margin-right: 0;
+    }
+
+    .img-login-container img {
+        display: none;
     }
 
     .container-footer {
@@ -209,6 +301,10 @@ footer {
 
     .titulo-footer {
         margin-top: 0.5rem;
+    }
+
+    .columna-footer {
+        padding: 10px;
     }
 
     .footer-copyright {

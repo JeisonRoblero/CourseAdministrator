@@ -1,3 +1,14 @@
+<?php
+include "configs/config.php";
+include "configs/funciones.php";
+if(!isset($p)) {
+    $p = "cursos";
+} else {
+    $p = $p;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +16,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imagenes/icono.png" type="image/x-icon">
-    <title>Course Administrator</title>
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Fuente -->
@@ -22,84 +32,26 @@
         </a>
 
         <div class="right-header">
-            <a href="./" class="perfil">
+            <a href="?p=login" class="perfil">
                 <img src="imagenes/perfil.png" alt="Perfil">
             </a>
         </div>
     </header>
 
     <main>
-
-        <div class="panel-cursos">
-            <div class="tarjeta-curso">
-                <div class="curso-img" onclick="window.location.href='./'" alt="Materia">
-                    <img src="https://www.electropolis.es/media/magefan_blog/2017/09/Psychiatric-Disorder-1-1024x768.jpg" alt="Materia">
-                </div>
-
-                <div class="cuerpo-tarjeta">
-                    <a href="./">
-                        <h3 class="nombre-curso">Electrónica Digital</h3>
-                        <h4 class="codigo-curso">220227690030A</h4>
-                        <h5 class="anio-curso">2022-2</h5>
-                    </a>
-                </div>
-                
-            </div>
-
-            <div class="tarjeta-curso">
-                <div class="curso-img" onclick="window.location.href='./'" alt="Materia">
-                    <img src="https://www.electropolis.es/media/magefan_blog/2017/09/Psychiatric-Disorder-1-1024x768.jpg" alt="Materia">
-                </div>
-
-                <div class="cuerpo-tarjeta">
-                    <a href="./">
-                        <h3 class="nombre-curso">Electrónica Digital</h3>
-                        <h4 class="codigo-curso">220227690030A</h4>
-                        <h5 class="anio-curso">2022-2</h5>
-                    </a>
-                </div>
-                
-            </div>
-
-
-            <div class="tarjeta-curso">
-                <div class="curso-img" onclick="window.location.href='./'" alt="Materia">
-                    <img src="https://www.electropolis.es/media/magefan_blog/2017/09/Psychiatric-Disorder-1-1024x768.jpg" alt="Materia">
-                </div>
-
-                <div class="cuerpo-tarjeta">
-                    <a href="./">
-                        <h3 class="nombre-curso">Electrónica Digital</h3>
-                        <h4 class="codigo-curso">220227690030A</h4>
-                        <h5 class="anio-curso">2022-2</h5>
-                    </a>
-                </div>
-                
-            </div>
-
-
-            <div class="tarjeta-curso">
-                <div class="curso-img" onclick="window.location.href='./'" alt="Materia">
-                    <img src="https://www.electropolis.es/media/magefan_blog/2017/09/Psychiatric-Disorder-1-1024x768.jpg" alt="Materia">
-                </div>
-
-                <div class="cuerpo-tarjeta">
-                    <a href="./">
-                        <h3 class="nombre-curso">Electrónica Digital</h3>
-                        <h4 class="codigo-curso">220227690030A</h4>
-                        <h5 class="anio-curso">2022-2</h5>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-        
+    <?php
+        if(file_exists("modulos/".$p.".php")) {
+            include "modulos/".$p.".php";
+        } else {
+            echo "<i>Lo sentimos no hemos encontrado el modulo <b>".$p."</b>, asegurate de ingresar el enlace correctamente <a href='./'>Regresar</a></i>";
+        }    
+    ?>   
     </main>
 
     <footer>
         <div class="container-footer">
             <a href="./" class="logo-footer-container"><img src="imagenes/icono.png" class="logo-footer" alt="Course Administrator"></a>
-            <div class="columna-footer">
+            <div class="columna-footer" style="width:50%">
                 <h5 class="titulo-footer">Administración de Cursos</h5>
                 <p class="parrafo-footer">Sitio web de control y administración de las actividades de los cursos</p>
             </div>
@@ -111,7 +63,6 @@
                 </ul>
             </div>
         </div>
-
         <div class="footer-copyright">
             <div>© 2022 Copyright Course Administrator</div>
             <a class="link-mas-info" href="#!">Más información</a>
