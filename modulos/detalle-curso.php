@@ -17,20 +17,28 @@
 </head>
 <body>
     <div class="detalle-curso-container">
-        <div class="titulo-curso-detalle">
-            <h3><?= $rc['nombre'] ?></h3>
-        </div>
-        <div class="separador"></div>
+        
         <div class="descripcion-curso">
-            <div class="id-curso">
-                <b>Código de Curso:</b> <?= $rc['id_curso'] ?>
+            <div class="titulo-curso-detalle">
+                <h3><?= $rc['nombre'] ?></h3>
             </div>
-            <div class="seccion-curso">
-                <b>Sección</b> "<?= $rc['seccion'] ?>"
+            <div class="separador"></div>
+            <div class="descripcion-curso-caption">
+                <div class="id-curso">
+                    <b>Código de Curso:</b> <?= $rc['id_curso'] ?>
+                </div>
+                <div class="seccion-curso">
+                    <b>Sección</b> "<?= $rc['seccion'] ?>"
+                </div>
+                <div class="creditos-curso">
+                    <b>Creditos:</b> <?= $rc['creditos'] ?>
+                </div>
             </div>
-            <div class="creditos-curso">
-                <b>Creditos:</b> <?= $rc['creditos'] ?>
+            <div class="fondo-obscuro-desc-curso"></div>
+            <div class="fondo-descripcion-curso">
+                <img src="<?= $rc['imagen'] ?>" alt="<?= $rc['nombre'] ?>">
             </div>
+            
         </div>
         <div class="container-tabla-actividades-curso">
             <table class="tabla-actividades-curso">
@@ -68,8 +76,10 @@
                             <td>52%</td>
                             <td>48%</td>
                             <td>
-                                <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button><i class="fa-solid fa-trash"></i></button>
+                                <div class="acciones-btn-actividades">
+                                    <button class="edit-activity-btn" alt="Editar Actividad"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-activity-btn" alt="Eliminar Actividad"><i class="fas fa-trash"></i></button>
+                                </div>          
                             </td>
                         </tr>
                     <?php

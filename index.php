@@ -27,6 +27,8 @@ if(!isset($p)) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 
+    <!-- Librería de iconos -->
+    <script src="https://kit.fontawesome.com/a3c0bc2905.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -78,7 +80,10 @@ if(!isset($p)) {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- Librería de iconos -->
-    <script src="https://kit.fontawesome.com/a3c0bc2905.js" crossorigin="anonymous"></script>
+    <!-- Librería para colores dinámicos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+
+    <!-- Lógica de Javascript local -->
+    <script src="js/app.js"></script>
 </body>
 </html>
