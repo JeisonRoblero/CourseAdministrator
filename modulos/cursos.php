@@ -17,45 +17,30 @@
 <body>   
         <div class="panel-cursos">
             
-            <div class="tarjeta-curso">
-                <div class="curso-img" onclick="window.location.href='./'" alt="Materia">
-                    <img src="https://www.electropolis.es/media/magefan_blog/2017/09/Psychiatric-Disorder-1-1024x768.jpg" alt="Materia">
-                </div>
-                <div class="cuerpo-tarjeta">
-                    <a href="?p=detalle-curso">
-                        <h3 class="nombre-curso">Electrónica Digital</h3>
-                        <h4 class="codigo-curso">220227690030A</h4>
-                        <h5 class="anio-curso">2022-2</h5>
-                    </a>
-                </div>         
-            </div>
+            <?php
+                // Obteniendo datos de la tabla cursos de la base de datos
+                $link = concectarBD();
+                $query = "SELECT * FROM curso";
+                $q = mysqli_query($link, $query);
+                
+                while($r = mysqli_fetch_array($q)) {
+            ?>
+                    <div class="tarjeta-curso">
+                        <div class="curso-img" onclick="window.location.href='?p=detalle-curso&idCurso=<?=$r['id_curso']?>'" alt="Materia">
+                            <img src="<?=$r['imagen']?>" alt="Materia">
+                        </div>
+                        <div class="cuerpo-tarjeta">
+                            <a href="?p=detalle-curso&idCurso=<?=$r['id_curso']?>">
+                                <h3 class="nombre-curso"><?= $r['nombre'] ?></h3>
+                                <h4 class="codigo-curso"><?= $r['id_curso'] ?></h4>
+                                <h5 class="anio-curso">2022-2</h5>
+                            </a>
+                        </div>         
+                    </div>
+            <?php
+                }
+            ?>
 
-
-            <div class="tarjeta-curso">
-                <div class="curso-img" onclick="window.location.href='./'" alt="Materia">
-                    <img src="https://www.electropolis.es/media/magefan_blog/2017/09/Psychiatric-Disorder-1-1024x768.jpg" alt="Materia">
-                </div>
-                <div class="cuerpo-tarjeta">
-                    <a href="./">
-                        <h3 class="nombre-curso">Electrónica Digital</h3>
-                        <h4 class="codigo-curso">220227690030A</h4>
-                        <h5 class="anio-curso">2022-2</h5>
-                    </a>
-                </div>
-            </div>
-
-            <div class="tarjeta-curso">
-                <div class="curso-img" onclick="window.location.href='./'" alt="Materia">
-                    <img src="https://www.electropolis.es/media/magefan_blog/2017/09/Psychiatric-Disorder-1-1024x768.jpg" alt="Materia">
-                </div>
-                <div class="cuerpo-tarjeta">
-                    <a href="./">
-                        <h3 class="nombre-curso">Electrónica Digital</h3>
-                        <h4 class="codigo-curso">220227690030A</h4>
-                        <h5 class="anio-curso">2022-2</h5>
-                    </a>
-                </div>  
-            </div>
         </div>
 </body>
 </html>

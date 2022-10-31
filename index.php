@@ -1,13 +1,14 @@
 <?php
+// Se incluyen archivos de configuración
 include "configs/config.php";
 include "configs/funciones.php";
-concectarBD();
+
+// Se valida que la página ya se haya establecido anteriormente
 if(!isset($p)) {
     $p = "cursos";
 } else {
     $p = $p;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,9 @@ if(!isset($p)) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Icono Principal (favicon) -->
     <link rel="shortcut icon" href="imagenes/icono.png" type="image/x-icon">
+    <!-- Hoja de Estilos -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Fuente -->
@@ -41,6 +44,7 @@ if(!isset($p)) {
 
     <main>
     <?php
+        // Si la página existe se procede a ingresar en ella, de lo contrario se le indica al usuario
         if(file_exists("modulos/".$p.".php")) {
             include "modulos/".$p.".php";
         } else {
@@ -73,5 +77,8 @@ if(!isset($p)) {
     <!-- Librería para gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Librería de iconos -->
+    <script src="https://kit.fontawesome.com/a3c0bc2905.js" crossorigin="anonymous"></script>
 </body>
 </html>
