@@ -19,7 +19,7 @@
     <div class="detalle-curso-container">
         
         <div class="descripcion-curso">
-            <div class="titulo-curso-detalle">
+            <div class="titulo-curso-detalle" id="titulo-curso-detalle">
                 <h3><?= $rc['nombre'] ?></h3>
             </div>
             <div class="separador"></div>
@@ -35,10 +35,9 @@
                 </div>
             </div>
             <div class="fondo-obscuro-desc-curso"></div>
-            <div class="fondo-descripcion-curso">
-                <img src="<?= $rc['imagen'] ?>" alt="<?= $rc['nombre'] ?>">
-            </div>
-            
+            <div class="fondo-descripcion-curso" id="fondo-descripcion-curso">
+                <img src="<?= $rc['imagen'] ?>" alt="<?= $rc['nombre'] ?>" class="imagen-desc-curso" id="imagen-desc-curso">
+            </div>      
         </div>
         <div class="container-tabla-actividades-curso">
             <table class="tabla-actividades-curso">
@@ -101,8 +100,14 @@
             </div>
         </div>
     </div>
+    <!-- Librería para gráficos -->
+    <script src="js/chart.js"></script>
+    <script src="js/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+     <!-- Lógica de Javascript local -->
+    <script src="js/app.js"></script>
     <script>
+        // colorDinamico('<?= $rc['imagen'] ?>','.titulo-curso-detalle');
         const labels = [
             'January',
             'February',
@@ -123,7 +128,7 @@
         };
 
         const config = {
-            type: 'line',
+            type: 'bar',
             data: data,
             options: {}
         };
@@ -132,6 +137,7 @@
             document.getElementById('myChart'),
             config
         );
+
     </script>
 </body>
 </html>
