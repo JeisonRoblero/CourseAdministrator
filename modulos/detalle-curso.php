@@ -41,7 +41,14 @@
         </div>
         <div class="container-tabla-actividades-curso">
             <table class="tabla-actividades-curso">
-                <caption><b>Tabla de Actividades</b></caption>
+                <div class="header-tabla-actividades">
+                    <div></div>
+                    <div class="titulo-tabla-actividades"><b>Tabla de Actividades</b></div>
+                    <button class="agregar-actividad-btn">
+                        <i class="fas fa-plus"></i>
+                        <span class="texto-hover-add">Agregar Nueva Actividad</span>
+                    </button>
+                </div>
                 <thead>
                     <tr>
                         <th>Curso</th>
@@ -76,8 +83,15 @@
                             <td>48%</td>
                             <td>
                                 <div class="acciones-btn-actividades">
-                                    <button class="edit-activity-btn" alt="Editar Actividad"><i class="fas fa-edit"></i></button>
-                                    <button class="delete-activity-btn" alt="Eliminar Actividad"><i class="fas fa-trash"></i></button>
+                                    <button class="edit-activity-btn" alt="Editar Actividad">
+                                        <p class="edit-btn-tag">Editar <?= $rta['nombre_tipo'] ?></p>
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                
+                                    <button class="delete-activity-btn" alt="Eliminar Actividad">
+                                        <p class="delete-btn-tag">Eliminar <?= $rta['nombre_tipo'] ?></p>
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </div>          
                             </td>
                         </tr>
@@ -94,8 +108,9 @@
                 </tfoot>
             </table>
         </div>
+        <h2 class="titulo-grafica">Gráfica Estadística</h2>
         <div class="container-grafica">
-            <div>
+            <div class="grafico-interno">
                 <canvas id="myChart"></canvas>
             </div>
         </div>

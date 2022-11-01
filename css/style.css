@@ -272,12 +272,53 @@ main {
     margin-top: 20px;
 }
 
-.tabla-actividades-curso caption {
+.header-tabla-actividades {
     background: #0093E9;
+    border-bottom: 3px solid #87d3ff;
+    margin-top: 18px;
+    margin-bottom: -20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo-tabla-actividades {
     color: #ffff;
     font-size: 1.5rem;
-    border-bottom: 3px solid #87d3ff;
-    padding: 15px;
+}
+
+.agregar-actividad-btn {
+    border: 6px solid #00a075;
+    background: #00bb89;
+    color: #ffff;
+    padding: 10px 15px;
+    font-size: 1.3rem;
+    border-radius: 0.8rem;
+    width: 60px;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all 0.5s ease;
+}
+
+.agregar-actividad-btn:hover {
+    border: 6px solid #00ffbb;
+    background: #00ca94;
+    width: 300px;
+    cursor: pointer;
+}
+
+.agregar-actividad-btn:active {
+    border: 6px solid #005e45;
+    background: #00b383;
+}
+
+.agregar-actividad-btn:hover > .texto-hover-add {
+    margin-left: 10px;
+}
+
+.texto-hover-add {
+    margin-left: 20px;
 }
 
 .tabla-actividades-curso tbody td {
@@ -323,20 +364,64 @@ main {
     color: #ffff;
 }
 
-.delete-activity-btn {
-    background: rgb(243, 55, 55);
-    color: #ffff;
-}
-
 .edit-activity-btn:hover {
     background: #696ed2;
     cursor: pointer;
+}
+
+.edit-btn-tag,
+.delete-btn-tag {
+    background: #414141b0;
+    color: #ffff;
+    padding: 5px;
+    font-size: 1rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 0.5rem;
+    position: absolute;
+    width: 115px;
+    margin-top: -35px;
+    margin-left: -52px;
+    display: none;
+}
+
+.edit-activity-btn:hover > .edit-btn-tag {
+    display: block;
+}
+
+.delete-activity-btn {
+    background: rgb(243, 55, 55);
+    color: #ffff;
 }
 
 .delete-activity-btn:hover {
     background: rgb(255, 68, 0);
     cursor: pointer;
 }
+
+.delete-activity-btn:hover > .delete-btn-tag {
+    display: block;
+}
+
+.container-grafica {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.grafico-interno {
+    width: 100%;
+    max-width: 900px;
+}
+
+.titulo-grafica {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 
 /* -------------------------------- */
 /* -----Pie de Página o Footer----- */
@@ -415,6 +500,26 @@ footer {
 
     .img-login-container img {
         display: none;
+    }
+
+    .titulo-tabla-actividades {
+        font-size: 1.2rem;
+    }
+
+    .agregar-actividad-btn {
+        font-size: 0.9rem;
+    }
+
+    .agregar-actividad-btn:hover {
+        width: 360px;
+    }
+
+    .agregar-actividad-btn {
+        width: 53px;
+    }
+    
+    .texto-hover-add {
+        margin-left: 10px;
     }
 
     .container-footer {
