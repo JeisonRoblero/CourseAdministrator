@@ -108,6 +108,54 @@
                 </tfoot>
             </table>
         </div>
+        <div class="add-actividad-form-container">
+            <div class="add-actividad-form-main">
+                <div class="titulo-actividad-form">
+                    <h2>Agregar Nueva Actividad</h2>
+                </div>
+                <form class="add-actividad-form">
+                    <input type="hidden" name="nombre_curso" class="nombre-curso-form">
+                    <label for="fecha_inicio">Ingrese la fecha de inicio de la actividad</label>
+                    <input type="date" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de inicio de actividad">
+                    <label for="fecha_entrega">Ingrese la fecha de entrega de la actividad</label>
+                    <input type="date" name="fecha_entrega" id="fecha_entrega" placeholder="Fecha de entrega de actividad">
+                    <label for="fecha_disponible">Ingrese la fecha disponible de la actividad</label>
+                    <input type="date" name="fecha_disponible" id="fecha_disponible" placeholder="Fecha disponible de actividad">
+                    <label for="tema">Ingrese el tema de la actividad</label>
+                    <input type="text" name="tema" id="tema" placeholder="Tema de la actividad" minlength="4" maxlength="100">
+                    <label for="subtema">Ingrese el subtema de la actividad</label>
+                    <input type="text" name="subtema" id="subtema" placeholder="Subtema de la actividad" minlength="4" maxlength="100">
+                    <label for="descripcion">Ingrese la descripción de la actividad</label>
+                    <textarea type="text" name="descripcion" id="descripcion" placeholder="Descripción de la actividad" minlength="4" maxlength="500"></textarea>
+                    <label for="id_tipo_actividad">Actividad</label>
+                    <select id="id_tipo_actividad" name="id_tipo_actividad" aria-label="Default select">
+                        <option selected>Selecciona un tipo de actividad</option>
+                        <?php
+                            $query4 = "SELECT * FROM tipo_actividad order by id_tipo_actividad ASC";
+                            $q4 = mysqli_query($link, $query4);
+                            while ($rta2 = mysqli_fetch_array($q4)) {
+                            
+                        ?>
+                                <option value="<?= $rta2['id_tipo_actividad'] ?>"><?= $rta2['nombre_tipo'] ?></option>
+                        <?php
+                            }
+                        ?>
+                    </select>
+                    <label for="punteo">Ingrese el punteo de la actividad</label>
+                    <input type="number" name="punteo" id="punteo" placeholder="Punteo de la actividad" minlength="1" maxlength="3">
+
+                    <input class="completado-check" type="checkbox" value="" id="completado">
+                    <label class="completado-label" for="completado">
+                        Actividad Completada
+                    </label>
+
+                    <button class="agregar-actividad-submit-btn">
+                        Agregar Actividad
+                    </button>
+
+                </form>
+            </div>
+        </div>
         <h2 class="titulo-grafica">Gráfica Estadística</h2>
         <div class="container-grafica">
             <div class="grafico-interno">
@@ -115,14 +163,14 @@
             </div>
         </div>
     </div>
+
     <!-- Librería para gráficos -->
-    <script src="js/chart.js"></script>
     <script src="js/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
      <!-- Lógica de Javascript local -->
     <script src="js/app.js"></script>
     <script>
-        // colorDinamico('<?= $rc['imagen'] ?>','.titulo-curso-detalle');
+        //colorDinamico('<?= $rc['imagen'] ?>','.titulo-curso-detalle');
         const labels = [
             'January',
             'February',

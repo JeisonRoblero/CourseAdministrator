@@ -32,7 +32,7 @@ function colorDinamico(imagen, nomClase) {
   var image = new Image();
   image.src = imagen;
   image.onload = function() {
-    color_promedio = obtenerColor(image);
+    color_promedio = get_average_rgb(image);
   }
 
   console.log(color_promedio);

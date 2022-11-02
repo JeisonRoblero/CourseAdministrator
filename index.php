@@ -29,6 +29,7 @@ if(!isset($p)) {
 
     <!-- Librería de iconos -->
     <script src="https://kit.fontawesome.com/a3c0bc2905.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <header>
@@ -78,7 +79,5 @@ if(!isset($p)) {
 
     <!-- Librería para colores dinámicos -->
     <script src="js/color-thief.umd.js"></script>
-
-   
 </body>
 </html>
