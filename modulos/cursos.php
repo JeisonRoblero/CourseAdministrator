@@ -19,7 +19,7 @@
             
             <?php
                 // Obteniendo datos de la tabla cursos de la base de datos
-                $link = concectarBD();
+                $link = conectarBD();
                 $query = "SELECT * FROM curso";
                 $q = mysqli_query($link, $query);
                 

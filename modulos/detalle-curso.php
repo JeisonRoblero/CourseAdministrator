@@ -1,6 +1,6 @@
 <?php
     // Obteniendo datos de la tabla curso de la base de datos
-    $link = concectarBD();
+    $link = conectarBD();
     $query = "SELECT * FROM curso WHERE id_curso = $idCurso";
     $q = mysqli_query($link, $query);
     $rc = mysqli_fetch_array($q);
@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <title>Electrónica Digital | Course Administrator</title>
+   <title><?= $rc['nombre'] ?> | Course Administrator</title>
 </head>
 <body>
     <div class="detalle-curso-container">
@@ -117,20 +117,20 @@
                     </button>
                 </div>
                 <div class="linea-divisora"></div>
-                <form class="actividad-form">
-                    <input type="hidden" name="nombre_curso" class="nombre-curso-form">
+                <form class="actividad-form" action="?p=agregar-actividad" method="POST">
+                    <input type="hidden" name="id_curso" value="<?= $rc['id_curso'] ?>" class="nombre-curso-form">
                     <label for="fecha_inicio">Ingrese la fecha de inicio de la actividad: </label><br>
-                    <input type="date" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de inicio de actividad"><br><br>
+                    <input type="date" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de inicio de actividad"><br>
                     <label for="fecha_entrega">Ingrese la fecha de entrega de la actividad: </label><br>
-                    <input type="date" name="fecha_entrega" id="fecha_entrega" placeholder="Fecha de entrega de actividad"><br><br>
+                    <input type="date" name="fecha_entrega" id="fecha_entrega" placeholder="Fecha de entrega de actividad"><br>
                     <label for="fecha_disponible">Ingrese la fecha disponible de la actividad: </label><br>
-                    <input type="date" name="fecha_disponible" id="fecha_disponible" placeholder="Fecha disponible de actividad"><br><br>
+                    <input type="date" name="fecha_disponible" id="fecha_disponible" placeholder="Fecha disponible de actividad"><br>
                     <label for="tema">Ingrese el tema de la actividad: </label><br>
-                    <input type="text" name="tema" id="tema" placeholder="Tema de la actividad" minlength="4" maxlength="100"><br><br>
+                    <input type="text" name="tema" id="tema" placeholder="Tema de la actividad" minlength="4" maxlength="100"><br>
                     <label for="subtema">Ingrese el subtema de la actividad: </label><br>
-                    <input type="text" name="subtema" id="subtema" placeholder="Subtema de la actividad" minlength="4" maxlength="100"><br><br>
+                    <input type="text" name="subtema" id="subtema" placeholder="Subtema de la actividad" minlength="4" maxlength="100"><br>
                     <label for="descripcion">Ingrese la descripción de la actividad: </label><br>
-                    <textarea type="text" name="descripcion" id="descripcion" placeholder="Descripción de la actividad" minlength="4" maxlength="500"></textarea><br><br>
+                    <textarea type="text" name="descripcion" id="descripcion" placeholder="Descripción de la actividad" minlength="4" maxlength="500"></textarea><br>
                     <label for="id_tipo_actividad">Seleccione actividad: </label><br>
                     <select id="id_tipo_actividad" name="id_tipo_actividad" aria-label="Default select"><br>
                         <option selected>Selecciona un tipo de actividad</option>
@@ -147,13 +147,14 @@
                     </select><br>
                     <label for="punteo">Ingrese el punteo de la actividad:</label><br>
                     <input type="number" name="punteo" id="punteo" placeholder="Punteo de la actividad" minlength="1" maxlength="3"><br><br>
-
-                    <input class="completado-check" type="checkbox" value="" id="completado">
-                    <label class="completado-label" for="completado">
-                        Actividad Completada
-                    </label><br><br>
-
-                    <button class="actividad-form-submit-btn">
+                    
+                    <div class="check-completado-container">
+                        <input class="completado-check" type="checkbox" name="completado" value="1" id="completado">
+                        <label>Actividad Completada </label>    
+                    </div>
+                    
+                    <button class="actividad-form-submit-btn" type="submit">
+                        <i class="fas fa-check-circle"></i>
                         Agregar Actividad
                     </button>
                 </form>

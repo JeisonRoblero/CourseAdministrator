@@ -30,6 +30,15 @@ if(!isset($p)) {
     <!-- Librería de iconos -->
     <script src="https://kit.fontawesome.com/a3c0bc2905.js" crossorigin="anonymous"></script>
 
+    <style>
+	    section + div {
+	        visibility: hidden;
+	    }
+	    
+	    .disclaimer {
+	        visibility: hidden;
+	    }
+  	</style>
 </head>
 <body>
     <header>
@@ -77,5 +86,11 @@ if(!isset($p)) {
         </div>
     </footer>
 
+    <!-- sweetalert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <div id="ultimo">
+	    
+	</div>
 </body>
 </html>
