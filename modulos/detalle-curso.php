@@ -108,27 +108,31 @@
                 </tfoot>
             </table>
         </div>
-        <div class="add-actividad-form-container">
-            <div class="add-actividad-form-main">
+        <div class="actividad-form-container">
+            <div class="actividad-form-main">
                 <div class="titulo-actividad-form">
                     <h2>Agregar Nueva Actividad</h2>
+                    <button class="salir-actividad-form-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
-                <form class="add-actividad-form">
+                <div class="linea-divisora"></div>
+                <form class="actividad-form">
                     <input type="hidden" name="nombre_curso" class="nombre-curso-form">
-                    <label for="fecha_inicio">Ingrese la fecha de inicio de la actividad</label>
-                    <input type="date" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de inicio de actividad">
-                    <label for="fecha_entrega">Ingrese la fecha de entrega de la actividad</label>
-                    <input type="date" name="fecha_entrega" id="fecha_entrega" placeholder="Fecha de entrega de actividad">
-                    <label for="fecha_disponible">Ingrese la fecha disponible de la actividad</label>
-                    <input type="date" name="fecha_disponible" id="fecha_disponible" placeholder="Fecha disponible de actividad">
-                    <label for="tema">Ingrese el tema de la actividad</label>
-                    <input type="text" name="tema" id="tema" placeholder="Tema de la actividad" minlength="4" maxlength="100">
-                    <label for="subtema">Ingrese el subtema de la actividad</label>
-                    <input type="text" name="subtema" id="subtema" placeholder="Subtema de la actividad" minlength="4" maxlength="100">
-                    <label for="descripcion">Ingrese la descripción de la actividad</label>
-                    <textarea type="text" name="descripcion" id="descripcion" placeholder="Descripción de la actividad" minlength="4" maxlength="500"></textarea>
-                    <label for="id_tipo_actividad">Actividad</label>
-                    <select id="id_tipo_actividad" name="id_tipo_actividad" aria-label="Default select">
+                    <label for="fecha_inicio">Ingrese la fecha de inicio de la actividad: </label><br>
+                    <input type="date" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de inicio de actividad"><br><br>
+                    <label for="fecha_entrega">Ingrese la fecha de entrega de la actividad: </label><br>
+                    <input type="date" name="fecha_entrega" id="fecha_entrega" placeholder="Fecha de entrega de actividad"><br><br>
+                    <label for="fecha_disponible">Ingrese la fecha disponible de la actividad: </label><br>
+                    <input type="date" name="fecha_disponible" id="fecha_disponible" placeholder="Fecha disponible de actividad"><br><br>
+                    <label for="tema">Ingrese el tema de la actividad: </label><br>
+                    <input type="text" name="tema" id="tema" placeholder="Tema de la actividad" minlength="4" maxlength="100"><br><br>
+                    <label for="subtema">Ingrese el subtema de la actividad: </label><br>
+                    <input type="text" name="subtema" id="subtema" placeholder="Subtema de la actividad" minlength="4" maxlength="100"><br><br>
+                    <label for="descripcion">Ingrese la descripción de la actividad: </label><br>
+                    <textarea type="text" name="descripcion" id="descripcion" placeholder="Descripción de la actividad" minlength="4" maxlength="500"></textarea><br><br>
+                    <label for="id_tipo_actividad">Seleccione actividad: </label><br>
+                    <select id="id_tipo_actividad" name="id_tipo_actividad" aria-label="Default select"><br>
                         <option selected>Selecciona un tipo de actividad</option>
                         <?php
                             $query4 = "SELECT * FROM tipo_actividad order by id_tipo_actividad ASC";
@@ -140,19 +144,18 @@
                         <?php
                             }
                         ?>
-                    </select>
-                    <label for="punteo">Ingrese el punteo de la actividad</label>
-                    <input type="number" name="punteo" id="punteo" placeholder="Punteo de la actividad" minlength="1" maxlength="3">
+                    </select><br>
+                    <label for="punteo">Ingrese el punteo de la actividad:</label><br>
+                    <input type="number" name="punteo" id="punteo" placeholder="Punteo de la actividad" minlength="1" maxlength="3"><br><br>
 
                     <input class="completado-check" type="checkbox" value="" id="completado">
                     <label class="completado-label" for="completado">
                         Actividad Completada
-                    </label>
+                    </label><br><br>
 
-                    <button class="agregar-actividad-submit-btn">
+                    <button class="actividad-form-submit-btn">
                         Agregar Actividad
                     </button>
-
                 </form>
             </div>
         </div>
@@ -170,7 +173,6 @@
      <!-- Lógica de Javascript local -->
     <script src="js/app.js"></script>
     <script>
-        //colorDinamico('<?= $rc['imagen'] ?>','.titulo-curso-detalle');
         const labels = [
             'January',
             'February',

@@ -77,7 +77,5 @@ if(!isset($p)) {
         </div>
     </footer>
 
-    <!-- Librería para colores dinámicos -->
-    <script src="js/color-thief.umd.js"></script>
 </body>
 </html>

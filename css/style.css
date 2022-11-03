@@ -54,6 +54,16 @@ main {
     min-height: 100vh;
 }
 
+::-webkit-scrollbar {
+    width: 0.6rem;
+    background-color: #d1f7ff;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #048B9E;
+    border-radius: 0.5rem;
+}
+
 /* ---------------------------- */
 /* -----Tarjetas de Cursos----- */
 /* ---------------------------- */
@@ -420,6 +430,67 @@ main {
     margin-top: 30px;
     margin-bottom: 20px;
     text-align: center;
+}
+
+/* --------------------------------------- */
+/* ------Formulario Actividad Curso------- */
+/* --------------------------------------- */
+.actividad-form-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(24, 24, 24, 0.27);
+    z-index: 10000;
+}
+
+.actividad-form-main {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(228, 228, 228, 0.816);
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    border-radius: 1rem;
+}
+
+.titulo-actividad-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+    margin-bottom: 8px;
+}
+
+.salir-actividad-form-btn {
+    border: none;
+    background-color: transparent;
+    font-size: 1.8rem;
+}
+
+.salir-actividad-form-btn:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.linea-divisora {
+    width: 100%;
+    height: 3px;
+    background: rgb(102, 102, 102);
+    border-radius: 2rem;
+    margin-bottom: 20px;
+}
+
+.actividad-form input,
+.actividad-form textarea,
+.actividad-form select {
+    width: 100%;
+    max-width: 255px;
+    font-size: 1.1rem
 }
 
 
