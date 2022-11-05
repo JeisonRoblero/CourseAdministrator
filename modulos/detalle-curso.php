@@ -77,6 +77,8 @@
                 </thead>
                 <tbody>
                     <?php
+                        $meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+                        $sumaPorMes = [0,0,0,0,0,0,0,0,0,0,0,0];
                         while($ra = mysqli_fetch_array($q2)) {
                             // Obteniendo datos de la tabla tipo_actividad de la base de datos
                             $query3 = "SELECT * FROM tipo_actividad WHERE id_tipo_actividad = ".$ra['id_tipo_actividad'];
@@ -91,7 +93,12 @@
                                 $completado = "No Completado";
                             }
 
-                            // $sumaPorMes = sumarPorMes($mes);
+
+                            for ($i = 0; $i < count($meses); $i++) {
+                                if ($mes == $meses[$i] && substr($ra['fecha_inicio'],0,4) == "2022" && $completado == "Completado") {
+                                    $sumaPorMes[$i]++;
+                                }
+                            }
 
                             if($ra['punteo'] <= 0) {
                                 $punteo = "No Aplica";
@@ -102,14 +109,14 @@
                             if ($ra['fecha_entrega'] == "0000-00-00" || $ra['fecha_entrega'] == null) {
                                 $fechaEntrega = "No Aplica";
                             } else {
-                                $fechaEntrega = $ra['fecha_entrega'];
+                                $fechaEntrega = fechaEs($ra['fecha_entrega']);
                             }
                     ?>
                         <tr>
                             <td><?= $ra['tema'] ?></td>
                             <td><?= $ra['subtema'] ?></td>
                             <td><?= $punteo ?></td>
-                            <td><?= $ra['fecha_inicio'] ?></td>
+                            <td><?= $fecha ?></td>
                             <td><?= $fechaEntrega ?></td>
                             <td><?= $mes ?></td>
                             <td><?= $rta['nombre_tipo'] ?></td>
@@ -199,7 +206,7 @@
             </div>
         </div>
        
-        <h2 class="titulo-grafica">Gráfica Estadística</h2>
+        <h2 class="titulo-grafica">Gráfica de Actividades Completadas 2022</h2>
         <div class="container-grafica">
             <div class="grafico-interno">
                 <canvas id="chart-actividades"></canvas>
@@ -214,68 +221,8 @@
     <!-- Lógica de Javascript local -->
     <script src="js/app.js"></script>
 
-    <canvas id="myChart" width="400" height="400"></canvas>
-<script>
-const ctx = document.getElementById('myChart');
-const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
-
 
     <script>
-        // cargarDatos();
-        // Función para cargar los datos
-        // function cargarDatos() {
-        //     $.ajax({
-        //         url: 'modulos/controlador-grafico.php',
-        //         type: 'POST',
-        //         data: {id_curso:'<?= $rc['id_curso'] ?>'},
-        //     }).done(function(resp) {
-        //         if (resp.length > 0) {
-        //             var titulo = [];
-        //             var cantidad = [];
-        //             var data = JSON.parse(resp);
-        //             for (var i=0; i < data.length; i++) {
-        //                 titulo.push(data[i][1]);
-        //                 cantidad.push(data[i][2]);
-        //             }
-
-        //             crearGrafico(titulo,cantidad,'bar','GRÁFICO EN BARRAS DE ACTIVIDADES','#chart-actividades');
-        //         }
-        //     });
-        // }
         
         var titulo = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
         var cantidad = [<?= (int)$sumaPorMes[0] ?>,<?= (int)$sumaPorMes[1] ?>,<?= (int)$sumaPorMes[2] ?>,
@@ -283,8 +230,7 @@ const myChart = new Chart(ctx, {
                         <?= (int)$sumaPorMes[6] ?>,<?= (int)$sumaPorMes[7] ?>,<?= (int)$sumaPorMes[8] ?>,
                         <?= (int)$sumaPorMes[9] ?>,<?= (int)$sumaPorMes[10] ?>,<?= (int)$sumaPorMes[11] ?>
                         ];
-        console.log(cantidad);
-        crearGrafico(titulo,cantidad,'bar','GRÁFICO EN BARRAS DE ACTIVIDADES','#chart-actividades');
+        crearGrafico(titulo,cantidad,'bar','GRÁFICO DE ACTIVIDADES','#chart-actividades');
 
         // Función para crear gráfico
         function crearGrafico(titulo,cantidad,tipo,encabezado,id) {
@@ -303,7 +249,12 @@ const myChart = new Chart(ctx, {
                             'rgba(75, 192, 192, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
                             'rgba(153, 102, 255, 0.2)',
-                            'rgba(201, 203, 207, 0.2)'
+                            'rgba(201, 203, 207, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)'
                         ],
                         borderColor: [
                             'rgb(255, 99, 132)',
@@ -312,7 +263,12 @@ const myChart = new Chart(ctx, {
                             'rgb(75, 192, 192)',
                             'rgb(54, 162, 235)',
                             'rgb(153, 102, 255)',
-                            'rgb(201, 203, 207)'
+                            'rgb(201, 203, 207)',
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)'
                         ],
                         borderWidth: 1
                     }]

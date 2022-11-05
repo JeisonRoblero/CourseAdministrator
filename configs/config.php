@@ -5,4 +5,7 @@
     $user_mysql = "root";
     $pass_mysql = "";
     $db_mysql = "administracion_cursos_bd";
+
+    // Variables globales
+    $suma = array(12);
 ?>
