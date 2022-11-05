@@ -8,6 +8,18 @@
     // Obteniendo datos de la tabla actividad de la base de datos
     $query2 = "SELECT * FROM actividad WHERE id_curso = $idCurso";
     $q2 = mysqli_query($link, $query2);
+
+    $mostrarMensaje = $_COOKIE["mostrarMensaje"];
+
+    if (isset($success) && $success == 1 && $mostrarMensaje == "true") {
+        alertnor("Actividad Agregada Exitosamente!",1);
+        setcookie("mostrarMensaje", "false", time() + (86400 * 30), "/");
+    }
+
+    if (isset($success) && $success == 2 && $mostrarMensaje == "true") {
+        alertnor("Actividad Modificada Exitosamente!",1);
+        setcookie("mostrarMensaje", "false", time() + (86400 * 30), "/");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +40,7 @@
                     <b>Código de Curso:</b> <?= $rc['id_curso'] ?>
                 </div>
                 <div class="seccion-curso">
-                    <b>Sección</b> "<?= $rc['seccion'] ?>"
+                    <b>Sección:</b> "<?= $rc['seccion'] ?>"
                 </div>
                 <div class="creditos-curso">
                     <b>Creditos:</b> <?= $rc['creditos'] ?>
@@ -51,14 +63,14 @@
                 </div>
                 <thead>
                     <tr>
-                        <th>Curso</th>
-                        <th>Mes</th>
                         <th>Tema</th>
-                        <th>SubTema</th>
+                        <th>Subtema</th>
+                        <th>Punteo</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Entrega</th>
+                        <th>Mes</th>
                         <th>Actividad</th>
-                        <th>Fecha</th>
-                        <th>% Proyectado</th>
-                        <th>% Ejecutado</th>
+                        <th>Completado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -71,24 +83,42 @@
                             $rta = mysqli_fetch_array($q3);
                             $mes = obtenerMes($ra['fecha_inicio']);
                             $fecha = fechaEs($ra['fecha_inicio']);
+
+                            if ($ra['completado'] == 1) {
+                                $completado = "Completado";
+                            } else {
+                                $completado = "No Completado";
+                            }
+
+                            if($ra['punteo'] <= 0) {
+                                $punteo = "No Aplica";
+                            } else {
+                                $punteo = $ra['punteo']." pts";
+                            }
+
+                            if ($ra['fecha_entrega'] == "0000-00-00" || $ra['fecha_entrega'] == null) {
+                                $fechaEntrega = "No Aplica";
+                            } else {
+                                $fechaEntrega = $ra['fecha_entrega'];
+                            }
                     ?>
                         <tr>
-                            <td><?= $rc['nombre'] ?></td>
-                            <td><?= $mes ?></td>
                             <td><?= $ra['tema'] ?></td>
                             <td><?= $ra['subtema'] ?></td>
+                            <td><?= $punteo ?></td>
+                            <td><?= $ra['fecha_inicio'] ?></td>
+                            <td><?= $fechaEntrega ?></td>
+                            <td><?= $mes ?></td>
                             <td><?= $rta['nombre_tipo'] ?></td>
-                            <td><?= $fecha ?></td>
-                            <td>52%</td>
-                            <td>48%</td>
-                            <td>
+                            <td><?= $completado ?></td>
+                            <td>  
                                 <div class="acciones-btn-actividades">
-                                    <button class="edit-activity-btn" alt="Editar Actividad">
+                                    <button class="edit-activity-btn" alt="Editar Actividad" onclick="editarActividad(`<?= $ra['id_actividad'] ?>`,`<?= $ra['id_tipo_actividad'] ?>`,`<?= $ra['fecha_inicio'] ?>`,`<?= $ra['fecha_entrega'] ?>`,`<?= $ra['fecha_disponible'] ?>`,`<?= $ra['tema'] ?>`,`<?= $ra['subtema'] ?>`,`<?= $ra['descripcion'] ?>`,`<?= $ra['punteo'] ?>`,`<?= $ra['completado'] ?>`,`<?= $ra['id_curso'] ?>`)">
                                         <p class="edit-btn-tag">Editar <?= $rta['nombre_tipo'] ?></p>
                                         <i class="fas fa-edit"></i>
                                     </button>
                                 
-                                    <button class="delete-activity-btn" alt="Eliminar Actividad">
+                                    <button class="delete-activity-btn" alt="Eliminar Actividad" onclick="eliminarActividad(`<?= $ra['id_actividad'] ?>`,`<?= $rta['nombre_tipo'] ?>`,`<?= $ra['tema'] ?>`,`<?= $idCurso ?>`)">
                                         <p class="delete-btn-tag">Eliminar <?= $rta['nombre_tipo'] ?></p>
                                         <i class="fas fa-trash"></i>
                                     </button>
@@ -108,6 +138,8 @@
                 </tfoot>
             </table>
         </div>
+
+        <!-- Formulario de Actividad Agregar y Editar -->
         <div class="actividad-form-container">
             <div class="actividad-form-main">
                 <div class="titulo-actividad-form">
@@ -117,49 +149,53 @@
                     </button>
                 </div>
                 <div class="linea-divisora"></div>
-                <form class="actividad-form" action="?p=agregar-actividad" method="POST">
-                    <input type="hidden" name="id_curso" value="<?= $rc['id_curso'] ?>" class="nombre-curso-form">
-                    <label for="fecha_inicio">Ingrese la fecha de inicio de la actividad: </label><br>
-                    <input type="date" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de inicio de actividad"><br>
-                    <label for="fecha_entrega">Ingrese la fecha de entrega de la actividad: </label><br>
-                    <input type="date" name="fecha_entrega" id="fecha_entrega" placeholder="Fecha de entrega de actividad"><br>
-                    <label for="fecha_disponible">Ingrese la fecha disponible de la actividad: </label><br>
-                    <input type="date" name="fecha_disponible" id="fecha_disponible" placeholder="Fecha disponible de actividad"><br>
-                    <label for="tema">Ingrese el tema de la actividad: </label><br>
-                    <input type="text" name="tema" id="tema" placeholder="Tema de la actividad" minlength="4" maxlength="100"><br>
-                    <label for="subtema">Ingrese el subtema de la actividad: </label><br>
-                    <input type="text" name="subtema" id="subtema" placeholder="Subtema de la actividad" minlength="4" maxlength="100"><br>
-                    <label for="descripcion">Ingrese la descripción de la actividad: </label><br>
-                    <textarea type="text" name="descripcion" id="descripcion" placeholder="Descripción de la actividad" minlength="4" maxlength="500"></textarea><br>
-                    <label for="id_tipo_actividad">Seleccione actividad: </label><br>
-                    <select id="id_tipo_actividad" name="id_tipo_actividad" aria-label="Default select"><br>
-                        <option selected>Selecciona un tipo de actividad</option>
-                        <?php
-                            $query4 = "SELECT * FROM tipo_actividad order by id_tipo_actividad ASC";
-                            $q4 = mysqli_query($link, $query4);
-                            while ($rta2 = mysqli_fetch_array($q4)) {
-                            
-                        ?>
-                                <option value="<?= $rta2['id_tipo_actividad'] ?>"><?= $rta2['nombre_tipo'] ?></option>
-                        <?php
-                            }
-                        ?>
-                    </select><br>
-                    <label for="punteo">Ingrese el punteo de la actividad:</label><br>
-                    <input type="number" name="punteo" id="punteo" placeholder="Punteo de la actividad" minlength="1" maxlength="3"><br><br>
-                    
-                    <div class="check-completado-container">
-                        <input class="completado-check" type="checkbox" name="completado" value="1" id="completado">
-                        <label>Actividad Completada </label>    
-                    </div>
-                    
-                    <button class="actividad-form-submit-btn" type="submit">
-                        <i class="fas fa-check-circle"></i>
-                        Agregar Actividad
-                    </button>
-                </form>
+                <div class="form-container-actividad-main">
+                    <form class="actividad-form" id="agregar-actividad-form" method="POST">
+                        <input type="hidden" name="id_curso" value="<?= $idCurso ?>" class="nombre-curso-form">
+                        <input type="hidden" name="id_actividad" id="id_actividad" value="" class="id_actividad">
+                        <br><label for="id_tipo_actividad">Seleccione actividad: </label><br>
+                        <select id="id_tipo_actividad" name="id_tipo_actividad" aria-label="Default select" required><br>
+                            <?php
+                                $query4 = "SELECT * FROM tipo_actividad order by id_tipo_actividad ASC";
+                                $q4 = mysqli_query($link, $query4);
+                                while ($rta2 = mysqli_fetch_array($q4)) {
+                                
+                            ?>
+                                    <option value="<?= $rta2['id_tipo_actividad'] ?>"><?= $rta2['nombre_tipo'] ?></option>
+                            <?php
+                                }
+                            ?>
+                        </select><br>
+                        <label for="fecha_inicio">Ingrese la fecha de inicio de la actividad: </label><br>
+                        <input type="date" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de inicio de actividad" required><br>
+                        <label for="fecha_entrega">Ingrese la fecha de entrega de la actividad: </label><br>
+                        <input type="date" name="fecha_entrega" id="fecha_entrega" placeholder="Fecha de entrega de actividad" required><br>
+                        <label for="fecha_disponible">Ingrese la fecha disponible de la actividad: </label><br>
+                        <input type="date" name="fecha_disponible" id="fecha_disponible" placeholder="Fecha disponible de actividad" required><br>
+                        <label for="tema">Ingrese el tema de la actividad: </label><br>
+                        <input type="text" name="tema" id="tema" placeholder="Tema de la actividad" minlength="4" maxlength="100" required><br>
+                        <label for="subtema">Ingrese el subtema de la actividad: </label><br>
+                        <input type="text" name="subtema" id="subtema" placeholder="Subtema de la actividad" minlength="4" maxlength="100" required><br>
+                        <label for="descripcion">Ingrese la descripción de la actividad: </label><br>
+                        <textarea style="font-family: 'Poppins', sans-serif;" type="text" name="descripcion" id="descripcion" placeholder="Descripción de la actividad" minlength="4" maxlength="500" required></textarea><br>
+                        
+                        <label for="punteo">Ingrese el punteo de la actividad:</label><br>
+                        <input type="number" name="punteo" id="punteo" placeholder="Punteo de la actividad" pattern="^[0-9]+" minlength="1" maxlength="3" required><br><br>
+                        
+                        <div class="check-completado-container">
+                            <input class="completado-check" type="checkbox" name="completado" value="1" id="completado">
+                            <label>Actividad Completada </label>    
+                        </div>
+                        
+                        <button class="actividad-form-submit-btn" type="submit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Agregar Actividad</span> 
+                        </button><br><br>
+                    </form>
+                </div>               
             </div>
         </div>
+       
         <h2 class="titulo-grafica">Gráfica Estadística</h2>
         <div class="container-grafica">
             <div class="grafico-interno">
@@ -168,11 +204,12 @@
         </div>
     </div>
 
+    <!-- Lógica de Javascript local -->
+    <script src="js/app.js"></script>
+
     <!-- Librería para gráficos -->
     <script src="js/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-     <!-- Lógica de Javascript local -->
-    <script src="js/app.js"></script>
     <script>
         const labels = [
             'January',

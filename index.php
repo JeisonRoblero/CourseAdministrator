@@ -30,6 +30,13 @@ if(!isset($p)) {
     <!-- Librería de iconos -->
     <script src="https://kit.fontawesome.com/a3c0bc2905.js" crossorigin="anonymous"></script>
 
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <!-- Sweetalert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <style>
 	    section + div {
 	        visibility: hidden;
@@ -53,6 +60,8 @@ if(!isset($p)) {
             </a>
         </div>
     </header>
+
+    
 
     <main>
     <?php
@@ -84,10 +93,7 @@ if(!isset($p)) {
             <div>© 2022 Copyright Course Administrator</div>
             <a class="link-mas-info" href="#!">Más información</a>
         </div>
-    </footer>
-
-    <!-- sweetalert -->
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </footer>  
 
     <div id="ultimo">
 	    

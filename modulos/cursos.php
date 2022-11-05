@@ -31,7 +31,7 @@
                         </div>
                         <div class="cuerpo-tarjeta">
                             <a href="?p=detalle-curso&idCurso=<?=$r['id_curso']?>">
-                                <h3 class="nombre-curso"><?= $r['nombre'] ?></h3>
+                                <h3 class="nombre-curso"><?= $r['nombre'] ?> <?=$r['seccion']?></h3>
                                 <h4 class="codigo-curso"><?= $r['id_curso'] ?></h4>
                                 <h5 class="anio-curso">2022-2</h5>
                             </a>

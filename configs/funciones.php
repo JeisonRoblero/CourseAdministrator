@@ -2,6 +2,7 @@
 include "config.php";
     // Conecta a la base de datos
     function conectarBD() {
+		// Variables de función globales
         global $host_mysql, $puerto, $user_mysql, $pass_mysql, $db_mysql;
 
         if(!$link = mysqli_connect($host_mysql, $user_mysql, $pass_mysql)) {
@@ -52,7 +53,7 @@ include "config.php";
         die();
     }
 
-    // Alertas 
+    // Alerta con redireccionamiento
     function alert($var,$type,$url){
 		//error, success, info
 		if ($type==0) {
@@ -72,6 +73,27 @@ include "config.php";
 
 	}
 
-    
+    // Alerta sin redireccionamiento
+    function alertnor($var,$type){
+
+		//error, success, info
+		if ($type==0) {
+			$t = "error";
+			$titu = 'Error 😥';
+		}elseif ($type==1) {
+			$t = "success";
+			$titu = '¡Éxito! 😀';
+		}elseif ($type==2) {
+			$t = "info";
+			$titu = '¡Espera! 😄';
+		}
+
+		echo '<script>swal({ title: "'.$titu.'", text: "'.$var.'", icon: "'.$t.'"});';
+		echo '$(".swal-button");';
+		echo '</script>';
+	}
+
+	// Almacenamiento en cookies
+	setcookie("mostrarMensaje", "false", time() + (86400 * 30), "/");
 
 ?>

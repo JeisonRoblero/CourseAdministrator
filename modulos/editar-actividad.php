@@ -1,14 +1,6 @@
 <?php
-    // Se conecta a la base de datos y ejecuta la consulta
-    $link = conectarBD();
-    $query = "SELECT * FROM actividad ORDER BY id_actividad DESC LIMIT 1";
-    $q = mysqli_query($link, $query);
-    while ($ra = mysqli_fetch_array($q)) {
-        $ultimoId = $ra['id_actividad'];
-    }
-    
     // Obtenemos los valores por medio del metodo POST del formulario y escapamos caracteres especiales html con el método clear()
-    $id_actividad = $ultimoId+1;
+    $id_actividad = clear($id_actividad);
     $id_curso = clear($id_curso);
     $id_tipo_actividad = clear($id_tipo_actividad);
     $fecha_inicio = clear($fecha_inicio);
@@ -32,10 +24,22 @@
     } else {
         $completado = 0;
     }
-
-    // Ejecutamos la consulta y retornamos a la página anterior
-    $query2 = "INSERT INTO actividad VALUES ('$id_actividad','$tema','$subtema','$descripcion','$punteo','$completado','$fecha_inicio','$fecha_entrega','$fecha_disponible','$id_curso','$id_tipo_actividad')";
-    $q2 = mysqli_query($link, $query2);
+    
+    // Se conecta a la base de datos,
+    // Se ejecuta la consulta y retornamos a la página anterior
+    $link = conectarBD();
+    $query = "UPDATE actividad 
+                    SET tema = '$tema',
+                        subtema = '$subtema',
+                        descripcion = '$descripcion',
+                        punteo = '$punteo',
+                        completado = '$completado',
+                        fecha_inicio = '$fecha_inicio',
+                        fecha_entrega = '$fecha_entrega',
+                        fecha_disponible = '$fecha_disponible',
+                        id_tipo_actividad = '$id_tipo_actividad'
+                    WHERE id_actividad = $id_actividad";
+    $q = mysqli_query($link, $query);
     setcookie("mostrarMensaje", "true", time() + (86400 * 30), "/");
-    redir("?p=detalle-curso&idCurso=".$id_curso."&success=1");
+    redir("?p=detalle-curso&idCurso=".$id_curso."&success=2");
 ?>
