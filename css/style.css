@@ -694,5 +694,11 @@ footer {
     }
 }
 
-
-
+/* ------------------------------------------- */
+/* -----Para dispositivos moviles medianos----- */
+/* ------------------------------------------- */
+@media screen and (max-width: 360px) {
+    .titulo-header {
+        font-size: 1.2rem;
+    }
+}

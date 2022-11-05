@@ -15,6 +15,7 @@
 
 </head>
 <body>   
+    <section>
         <div class="panel-cursos">
             
             <?php
@@ -42,5 +43,6 @@
             ?>
 
         </div>
+    </section>    
 </body>
 </html>

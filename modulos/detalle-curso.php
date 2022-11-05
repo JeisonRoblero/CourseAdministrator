@@ -28,6 +28,7 @@
    <title><?= $rc['nombre'] ?> | Course Administrator</title>
 </head>
 <body>
+    <section>
     <div class="detalle-curso-container">
         
         <div class="descripcion-curso">
@@ -90,6 +91,8 @@
                                 $completado = "No Completado";
                             }
 
+                            // $sumaPorMes = sumarPorMes($mes);
+
                             if($ra['punteo'] <= 0) {
                                 $punteo = "No Aplica";
                             } else {
@@ -151,7 +154,7 @@
                 <div class="linea-divisora"></div>
                 <div class="form-container-actividad-main">
                     <form class="actividad-form" id="agregar-actividad-form" method="POST">
-                        <input type="hidden" name="id_curso" value="<?= $idCurso ?>" class="nombre-curso-form">
+                        <input type="hidden" name="id_curso" value="<?= $rc['id_curso'] ?>" class="nombre-curso-form">
                         <input type="hidden" name="id_actividad" id="id_actividad" value="" class="id_actividad">
                         <br><label for="id_tipo_actividad">Seleccione actividad: </label><br>
                         <select id="id_tipo_actividad" name="id_tipo_actividad" aria-label="Default select" required><br>
@@ -199,48 +202,125 @@
         <h2 class="titulo-grafica">Gráfica Estadística</h2>
         <div class="container-grafica">
             <div class="grafico-interno">
-                <canvas id="myChart"></canvas>
+                <canvas id="chart-actividades"></canvas>
             </div>
         </div>
     </div>
 
+    <!-- Librería para gráficos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    
     <!-- Lógica de Javascript local -->
     <script src="js/app.js"></script>
 
-    <!-- Librería para gráficos -->
-    <script src="js/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <canvas id="myChart" width="400" height="400"></canvas>
+<script>
+const ctx = document.getElementById('myChart');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
 
     <script>
-        const labels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
+        // cargarDatos();
+        // Función para cargar los datos
+        // function cargarDatos() {
+        //     $.ajax({
+        //         url: 'modulos/controlador-grafico.php',
+        //         type: 'POST',
+        //         data: {id_curso:'<?= $rc['id_curso'] ?>'},
+        //     }).done(function(resp) {
+        //         if (resp.length > 0) {
+        //             var titulo = [];
+        //             var cantidad = [];
+        //             var data = JSON.parse(resp);
+        //             for (var i=0; i < data.length; i++) {
+        //                 titulo.push(data[i][1]);
+        //                 cantidad.push(data[i][2]);
+        //             }
 
-        const data = {
-            labels: labels,
-            datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45],
-            }]
-        };
+        //             crearGrafico(titulo,cantidad,'bar','GRÁFICO EN BARRAS DE ACTIVIDADES','#chart-actividades');
+        //         }
+        //     });
+        // }
+        
+        var titulo = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+        var cantidad = [<?= (int)$sumaPorMes[0] ?>,<?= (int)$sumaPorMes[1] ?>,<?= (int)$sumaPorMes[2] ?>,
+                        <?= (int)$sumaPorMes[3] ?>,<?= (int)$sumaPorMes[4] ?>,<?= (int)$sumaPorMes[5] ?>,
+                        <?= (int)$sumaPorMes[6] ?>,<?= (int)$sumaPorMes[7] ?>,<?= (int)$sumaPorMes[8] ?>,
+                        <?= (int)$sumaPorMes[9] ?>,<?= (int)$sumaPorMes[10] ?>,<?= (int)$sumaPorMes[11] ?>
+                        ];
+        console.log(cantidad);
+        crearGrafico(titulo,cantidad,'bar','GRÁFICO EN BARRAS DE ACTIVIDADES','#chart-actividades');
 
-        const config = {
-            type: 'bar',
-            data: data,
-            options: {}
-        };
-
-        const myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-        );
+        // Función para crear gráfico
+        function crearGrafico(titulo,cantidad,tipo,encabezado,id) {
+            var idCtx = document.querySelector(id);
+            var chart = new Chart(idCtx, {
+                type: tipo,
+                data: {
+                    labels: titulo,
+                    datasets: [{
+                        label: encabezado,
+                        data: cantidad,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                        ],
+                        borderWidth: 1
+                    }]
+                }
+            });
+        }
 
     </script>
+    </section>
 </body>
 </html>

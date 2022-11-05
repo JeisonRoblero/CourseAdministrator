@@ -27,6 +27,17 @@ if(!isset($p)) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 
+    <!-- Metaetiquetas SEO -->
+    <meta property="og:image" itemprop="image" content="imagenes/icono.png"/>
+    <meta property="og:image:secure_url" itemprop="image" content="imagenes/icono.png"/> 
+    <meta property="og:site_name" content="Course Administrator | Web Site"/>
+    <meta property="og:title" content="Course Administrator | Web Site"/>
+    <meta property="og:description" content="Sitio Web de Administración de Cursos"/>
+    <meta property="og:url" content="https://courseadministrator.000webhostapp.com/"/>
+    <meta property="og:type" content="website"/>
+    <meta name="description" content="Sitio Web de Administración de Cursos">
+    <meta name="theme-color" content="#0464A5"/>
+
     <!-- Librería de iconos -->
     <script src="https://kit.fontawesome.com/a3c0bc2905.js" crossorigin="anonymous"></script>
 
@@ -38,14 +49,14 @@ if(!isset($p)) {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <style>
-	    section + div {
-	        visibility: hidden;
-	    }
-	    
-	    .disclaimer {
-	        visibility: hidden;
-	    }
-  	</style>
+        section + div {
+            visibility: hidden;
+        }
+            
+        .disclaimer {
+            visibility: hidden;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -73,7 +84,7 @@ if(!isset($p)) {
         }    
     ?>   
     </main>
-
+    
     <footer>
         <div class="container-footer">
             <a href="./" class="logo-footer-container"><img src="imagenes/icono.png" class="logo-footer" alt="Course Administrator"></a>
@@ -94,9 +105,8 @@ if(!isset($p)) {
             <a class="link-mas-info" href="#!">Más información</a>
         </div>
     </footer>  
-
     <div id="ultimo">
 	    
-	</div>
+    </div>
 </body>
 </html>

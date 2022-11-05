@@ -4,6 +4,7 @@
    <title>Login | Course Administrator</title>
 </head>
 <body>
+<section>
     <div class="login-page">
         <div class="login-container">
             <div class="titulo-login">
@@ -31,5 +32,6 @@
             <img src="./imagenes/login-img.jpg" alt="Login">
         </div>
     </div>
+</section>
 </body>
 </html>
