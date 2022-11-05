@@ -18,8 +18,6 @@ Plataforma web de administración de cursos, diseñada para planificar las difer
 
 ![image](https://user-images.githubusercontent.com/89631773/200108053-83589cf0-e7d1-48c2-9fee-51d839b678e1.png)
 
-![image](https://user-images.githubusercontent.com/89631773/199361965-45eed2d9-fa66-46dd-8a69-c3651663f51a.png)
-
 ![image](https://user-images.githubusercontent.com/89631773/200108244-04f925cc-0cab-42b7-9b35-b22424c9731e.png)
 
 
